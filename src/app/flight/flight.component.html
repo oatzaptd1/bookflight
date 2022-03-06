@@ -1,0 +1,146 @@
+<form [formGroup]="flightForm">
+  <h1 class="text-center m-4">Banana Airlines</h1>
+  <div class="row">
+    <div class="form-group mt-3">
+      <label>Full Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="fullName"
+        placeholder="Enter your name"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <label for="" class="form-label">From</label>
+        <select formControlName ="from" class="form-select ng-untouched ng-pristine ng-invalid">
+
+          <option>Thailand</option>
+          <option>Brunei Darussalam</option>
+          <option>Cambodia</option>
+          <option>Laos</option>
+          <option>Malaysia</option>
+          <option>Japan</option>
+        </select>
+    </div>
+    <div class="col">
+      <label for="" class="form-label">To</label>
+        <select formControlName ="to" class="form-select ng-untouched ng-pristine ng-invalid">
+
+          <option>Thailand</option>
+          <option>Brunei Darussalam</option>
+          <option>Cambodia</option>
+          <option>Laos</option>
+          <option>Malaysia</option>
+          <option>Japan</option>
+        </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <label>Trip Type</label>
+      <div class="line">
+        <input class="col-md-1 form-check-input m-2" type="radio" id="Oneway" name="type" value="One way" formControlName="type">
+        <label class="form-check-label  m-1" for="Oneway">One way</label>
+        <input class="col-md-1 form-check-input m-2" type="radio" id="Return" name="type" value="Return" formControlName="type">
+        <label class="form-check-label  m-1" for="Return">Return</label>
+      </div>
+  </div>
+
+    <div class="col">
+      <b class="form-label">Departure</b><br>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <b class="form-label">Arrival</b><br>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker1" [min]="db" formControlName="departure">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div formControlName ="adults" class="col">
+      <b class="form-label">Adults</b>
+      <input
+      type="text"
+      class="form-control"
+      formControlName="adults"
+      />
+    </div>
+
+    <div class="col">
+      <b class="form-label">Children</b>
+      <input
+      type="text"
+      class="form-control"
+      formControlName="children"
+      />
+    </div>
+
+    <div class="col">
+      <b class="form-label">Infants</b>
+      <input
+      type="text"
+      class="form-control"
+      formControlName="infants"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <button
+      class="btn-lg btn-block btn-primary"
+      type="submit"
+      [disabled]="flightForm.invalid"
+      (click)="OnSubmit(flightForm.value)"
+    >
+      Submit
+    </button>
+
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Full Name</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Type</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Adults</th>
+        <th scope="col">Children</th>
+        <th scope="col">Infants</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let f of flight">
+        <td>{{ f.fullName }}</td>
+        <td>{{ f.from }}</td>
+        <td>{{ f.to }}</td>
+        <td>{{ f.type }}</td>
+        <td>{{ f.departure | date: "d MMM y" }}</td>
+        <td>{{ f.arrival | date: "d MMM y" }}</td>
+        <td>{{ f.adults }}</td>
+        <td>{{ f.children }}</td>
+        <td>{{ f.infants }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</form>
+
