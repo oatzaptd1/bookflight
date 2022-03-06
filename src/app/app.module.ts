@@ -10,6 +10,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PageService } from './service/page.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     FlightComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
@@ -26,7 +30,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'th-TH'}],
+  providers: [PageService,{provide: MAT_DATE_LOCALE, useValue: 'th-TH'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
